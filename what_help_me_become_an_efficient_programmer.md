@@ -15,7 +15,7 @@ way to do one single thing.
 In order to let myself get close to what I mentioned above, I tried a couple of
 things in the last couple of years which I'd like to share and get feedbacks.
 
-## Communication Skills
+### Communication Skills
 
 The first tool is communication. The reason why I list it as the first thing is because
 if something is mean to be created, first we have to know what it is, and by knowing it
@@ -98,7 +98,7 @@ human-beings have a bad memory we can not remember anything, so it could be nice
 things which are asked very frequently in some documents. And it could be even nicer if those documents
 can be maintained online, so people can review, give opinions online to keep the document up to date.
 
-## Developing Environment
+### Developing Environment
 
 Every programmer has his/her ideas about what's the best for work, and from my experience it could be
 very different from different person. For myself the list below is a minimum must for me to work efficient.
@@ -164,17 +164,17 @@ very different from different person. For myself the list below is a minimum mus
   > So if you have some job need to be done very frequently, it's worth to try out some tools to make it automatically happen
   > for you.
 
-## Pay For Efficiency
+### Pay For Efficiency
 I have to say most paid productivity tools worth the price and it usually has better user experience than free one,
 so if you feel like it could help you just buy it. We are engineers we know how hard to create something which is
 usefully, so pay for it to make better software.
 
-## Get Feedbacks From Others
+### Get Feedbacks From Others
 Talk about how you do your work with your co-workers/friends, express the things which pissed you off to them, most
 likely they would know something which can ease your pain. You don't know what other's doing and they will surprise
 you in a good way.
 
-## Make Your Own Tools
+### Make Your Own Tools
 I always say that every body is somehow different, no one could understand your requirements better than yourself, so
 when you feel like there aren't any existing tools which can help you, just give a try to create one for yourself,
 gains from it could be very fruitful, as for example you could write your own Vim plugin to simplify your work and you
