@@ -3,35 +3,41 @@ Play With React&Webpack For Single App Development
 
 ### Get Started
 
+When I frist wrote this article I have been played with front-end for a couple of weeks, have to admit the javascript
+world changed a lot since last time I touched it about six years ago. In this
+post I will share what I have learned in working with React and webpack to build a single
+page app.
+
 #### What Is Webpack & What I Use It For
 
 From Webpack's website it claims itself as "module bundler" which actually took
 me a while to really understand what's the meaning behind. By using webpack we
-could make good use of ES6, sass, less, jade or anything with specific loader to
-compile all those stuff into underlaying browser aware static assets. What's more
+could make good use of ES6, sass, less, jade or anything with specific loaders to
+compile all those stuff into underlaying browser aware static assets. What's more,
 webpack does understand the dependencies, the compiled static assets can be split
 into smaller files with related content only, this is actually what I like the most.
 But Webpack is more than this, it supports plugins, so if you want to customize it:
-like compression, you could just apply a compression plugin to do it. Webpack also
-provide tools for debugging, for example: dev-tools and dev-server which make debugging
-a little bit easier. So for myself I use webpack as a compiler for compilers, one
+like compression, you could just apply a compression plugin to do it.
+
+Webpack also provides tools for debugging: dev-tools and dev-server which make debugging
+a little bit easier. In short, I use webpack as a compiler for compilers, one
 tool to integrate all configuration for building static assets, a package tool but smart.
 
 #### First Impression With React
 
-React is "just the UI" framework, it encourage you to use it with other exist tools together
-to carry out M and C in "MVC" pattern, but react itself only focus on V. It has better
+React is "just the UI" framework, it encourages you to use it with other exist tools together
+to carry out M and C in classic "MVC" pattern, but react itself only focus on V. It has better
 performance because of virtual DOM and one way data flow to reduce the over complexity
 traditional bi-direction data bind involves. And another thing I like react is JSX, by
-using JSX the template and code can be separated more naturally and improve readability
-a lot. And with the life-cycle interfaces React provide we could easily integrate with
+using JSX the template and code can be separated more naturally which improves readability
+a lot. And with the life-cycle interfaces React provides we could easily integrate with
 other non-react libraries.
 
 #### Bird's-eye view For Tools I Use To Build A Single App
 
 Webpack and React are like the core team members I use to build a single App, but that's
-not enough, there are still some necessary component like local data storage,
-network interaction, UI Component libraries need to be handled properly, below is a graph
+not enough, there are still some necessary components like local data storage,
+network interaction, UI Component libraries need to be handled properly. Below is a graph
 explains what are in the tool chain and how they communicate with each other.
 
 ![Architecture](front_end_structure.png)
@@ -39,28 +45,27 @@ explains what are in the tool chain and how they communicate with each other.
 As you can see above there are two types of arrows which marked as different color, the blue
 one is non-Ajax request and the orange one is Ajax request. All non-Ajax requests will return
 the same HTML page which is our application. In this single page it contains all the necessary
-javascript, css, images and etc. All the data requests are go through Ajax request which is
+javascript, css, images and etc. All the data requests will go through Ajax request which is
 represented by the orange arrow.
 
 Look inside the application. As you can see Webpack is in the middle while the left side is
 our source code and the right side is the compiled static assets which are actually inside
-our application. Look at the left size, the UI is built by React, on above redux will work
+our application. Look at the left, the UI is built by React, on above redux will work
 as a storage for local state change, Axios is a network interaction component which the Ajax
 requests are sent here and the response is used to update the redux state object. Sass and
-Bootstrap is in charge of the appearance of the UI component. On the top is React Router,
-for myself react router's behavior is kind of similar to most backend framework's url configure.
+Bootstrap are in charge of the appearance of the UI component. On the top is React Router,
+for myself react router's behavior is kind of similar to most backend framework's url mapper.
 As for an application it has many features, router makes it easy to split code by different
-features and provide a way to map the request(url) to underlaying module.
+business logic and provides a way to map the request(url) to underlaying module.
 
-As a backend engineer myself, I could easily connect this whole idea to backend web framework
-which react is like a template engine(not very accurate more like JSP/PHP actually), redux is
-a kind of database, axios is a RPC/Http client, React Router is a micro web framework and
-Webpack is like a packaging tool for example maven. As we talked about backend and frontend so
-much before there is actually no end in front of us ;)
+As a backend engineer myself most of the time, I could easily bring a connection of this whole
+idea to backend web framework which react is like a template engine(not very accurate more
+like JSP/PHP actually), redux is a kind of database, axios is a RPC/Http client, React Router
+is a micro web framework and Webpack is like a packaging tool(for example like maven). As we talked about backend and frontend so much before, there is actually no end in front of us ;)
 
 ### For Development
 
-This section will talk about how the actually development life looks like for me, and you could
+In this section I will talk about how the actual development life looks like for me, and you could
 find the related code in github
 
 #### Project Layout
@@ -81,18 +86,18 @@ find the related code in github
 
 Above layout is the current project layout I use. The application is implemented in the app folder,
 bundle is the compiler output folder where the compiled static assets are located, scss folder is
-where I put the styles, font for font file image for images. Look into app folder the layout's idead
+where I put the styles, font for font files, image for images. Ideas about the layout of app folder
 is borrowed from this article
 [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.lrp0d7746)
-components are those which could be reused for multiple pages, containers are more like controllers.
-For actions, reducers and stores are for redux, each folder is a represent of related component in redux. 
+components are those which could be reused, containers are more like controllers.
+For actions, reducers and stores are for [redux](http://redux.js.org/), each folder is a represent of related component in redux. 
 apis folder is for ajax api, all the ajax interfaces are defined here, containers will call those
-api to read date from or write data to backend.
+api to read data from or write data to backend.
 
 #### Use Webpack To Compile Static Resouce
 
-To use Webpack we only need a config file to setup everything, below is a simple configure file I
-use, and I will explain what each part of it is about below.
+To use Webpack we only need a config file to setup everything. Below is a simple configure file I
+use, and I will explain what each part of it is about in the following.
 
     module.exports = {
         entry: {
@@ -141,30 +146,29 @@ use, and I will explain what each part of it is about below.
         },
     };
 
-Context
-    Context is the basedir for reslove entry points, you could consider it as the static
-    projects's root directory
+__Context__  
+    Context is the basedir for entry points, I perfer to set it as the static projects's root directory.
 
-Entry & Output
+__Entry & Output__  
     Entry defines the entry points when webpack tries to compile your code which means webpack will start
-looking at the entry points defined to find the whole code base dependencies. As you can see from the
+looking at the entry points defined to find the whole code base's dependencies. As you can see from the
 example above, there are two entry points defined: one is app another is vendor. The reason why vendor
-is separated from app is because vendor's code usually not changed or change not that frequently as our
+is separated from app is because vendor's code usually not changed or not that frequently changed as our
 application code, so split it into another file will help browser to cache vendor's code, but in order
 to split it we need an extra plugin to do that which will be explained later.
 
-Loaders
-    Loaders give the possibily to preprocess files before it actually been required or imported. With
+__Loaders__  
+    Loaders give the possibility to preprocess files before it actually been required or imported. With
 this feature we could compile jsx into javascript, sass into css, coffee script into javascript and etc.
-In above example it defines how to handling jsx files, it use babel loader to compile the jsx file with
+In above example it defines how to handling jsx files, it uses babel loader to compile the jsx file with
 customized parameters in query.
 
-Plugins
+__Plugins__  
     Plugins usually related to the compiled file, in this example it splits the common code(vendor's code)
 from application code, we could also use plugin to compress javascript or css code. 
 
-Resolve
-    Resolve defines the mechanism how webpack look at the code when it required in the code base, above
+__Resolve__  
+    Resolve defines the mechanism how webpack find out the code when it required in the code base, above
 example defined the root and extensions which means the root path for webpack to looking for source code
 and the possible extensions. And notice that if you have code like `require("./somefile.ext")` with
 extension in it you must have an empty string in the extension definition.
@@ -210,22 +214,24 @@ So if I access /user/1232/ and assume the user's name is Tom, the page will be r
         </div>
     </div>
 
-See the children is be filled into the parent's node. By using this feature we could layout the menu layout
-and put all subpage as children use different url pattern to switch from different sub pages.
+See the children are filled into the parent's node. By using this feature we could define app's layout with menus
+and put all subpage as children then use different url patterns to switch from different sub pages.
 
 #### Use Redux To Track State Change
+
 As React see itself as an UI framework, we need extra help from other framework to keep track of
-state change. For example after user login to need to store the user information somewhere for display, this
+state change. For example after user login, we need to store the user information somewhere for display, this
 is where redux come in for playing. Redux provide three components to track the state change of the application,
 they are action, reducer and store. Action is the data source for store, it defines what happens
-in the application and reducer response to the action and decide the related state change in store, the store
-it where the state is stored. Another very important thing is that the store is basically a big data object.
+in the application and reducer responses to the action and decides the related state change in store, the store
+is where the state is stored. Another very important thing is that the store is basically a big data object.
 
 #### Use Axios For Network Interaction
+
 Axios is an http client library which based on Promise interface, it provides simple interfaces for
 network interaction. By simple configuration you can start to play with it, and it also provides
-Interceptors which you can inspect requests and responses which makes some globally process for requests
-and responses easier for example global error handling.
+interceptors which you can inspect requests and responses which makes some globally process for requests
+and responses easier: for example global error handling.
 
 #### Style
 
@@ -280,9 +286,9 @@ Then you there will be extra style.css and style.js file generated, the style.js
 this solution, it only an almost empty javascript file you could just ignore it.
 
 #### Debugging
-The last part is debugging, which actually is where we spend most of our time at. For browser debugging
-source-map is a good for connect compiled code with source code, and webpack-dev-server is good for debugging
-debugging with backend server.
+
+The last part is debugging, which actually is where I spend most of our time at. For browser debugging
+source-map is good for connecting compiled code with source code, and webpack-dev-server is good for debugging with backend server.
 
     devtool: "source-map",
     devServer: {
@@ -301,7 +307,7 @@ debugging with backend server.
         port: 9876
     }
 
-Above code snippets configured the source-map and webpack debug server, for dev server we proxy all static
+Above code snippets configured the source-map and webpack debug server, for dev server we could proxy all static
 request to our local environment and all non static request to backend dev server. To run the dev server
 I use the following command:
 
@@ -313,5 +319,5 @@ After two weeks' playing on webpack and React, I feel like those two tools are a
 a lot of thing need to known before we can get them into our use. A lot of things still have space for
 improvements, for example webpack's documentation, but before everything is ready and prefect there are
 still tons of source for learning, there are tons of project on github related to those two, so download
-some famous opensource project code and try to learn from them help me a lot, I borrow a lot of things from
+some famous open source project and try to learn from them helps me a lot, I borrowed a lot of things from
 sentry's source code in this post. Happy exploring!
